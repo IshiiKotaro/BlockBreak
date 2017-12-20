@@ -2,106 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class ItemManager : SingletonMonoBehaviour<ItemManager>{
 
-
-public class ItemManager : SingletonMonoBehaviour<ItemManager>
-{
-
-    public GameObject[] m_ItemPrefab;
-
-
-    List<GameObject> m_ItemList;
-
-    //==============================
-    //ゲッター
-    //==============================
-
-    public int GetListSize() { return m_ItemList.Count; }
+	public GameObject[] m_pItemPrefab;
+	GameObject[] m_ItemList;
 
 
 
-    //==============================
-    //関数
-    //==============================
-
-    public void Awake()
-    {
-        if(this != GetInstance)
-        {
-            Destroy(this);
-            return;
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+	//
+	public void Awake()
+	{
+		if (this != GetInstance)
+		{
+			Destroy(this);
+			return;
+		}
+		DontDestroyOnLoad(this.gameObject);
+	}
 
 
-
-    private ItemManager()
-    {
-        m_ItemList = new List<GameObject>();
-    }
-
-
-    /*アイテム作成
-    _Id: 作成するアイテムのID
-    _Pos:作成するアイテムの座標*/
-    public void Create(int _Id, Vector3 _Pos)
-    {
-        //インスタンス生成
-        GameObject item = (GameObject)Instantiate(
-            m_ItemPrefab[_Id],
-            _Pos,
-            Quaternion.identity
-            );
-        item.transform.parent = this.transform;
+	void Start()
+	{
+		m_ItemList = new GameObject[m_pItemPrefab.Length];
+		for (int cnt = 0; cnt < m_ItemList.Length; cnt++) 
+		{
+			m_ItemList[cnt] = (GameObject)Instantiate(
+				m_pItemPrefab[cnt],
+				transform.position,
+				Quaternion.identity
+			);
+		}
+	}
 
 
-        m_ItemList.Add(item);
+	public void Init()
+	{
+		float x = 0.0f;
+		float y = 0.0f;
 
-       // Debug.Log("ItemList:" + m_ItemList.Count);
-       // Debug.Log("アイテム生成");
+		if (PlayerPrefs.GetInt ("VectorUp") == 1) 
+		{
+			x = 0.0f;
+			y = 0.1f;
+		} 
+		else
+		{
+			x = -100.0f;
+			y = -100.0f;
+		}
 
+		m_ItemList [0].transform.position = new Vector3 (x,y,0.0f);
 
-
-    }
-
-
-    public void CheckDelete()
-    {
-
-
-        
-        foreach (GameObject item in m_ItemList)
-        {
-            if(item == null)
-            {
-                Debug.Log("アイテムNULL");
-                continue;
-            }
-
-
-            //CSコンポーネント取得
-            ItemBase itemCS = item.GetComponent<ItemBase>();
-
-
-            if (itemCS.GetIsDelete() == false) continue;
+		if (PlayerPrefs.GetInt ("Shot4Way") == 1)
+		{
+			x = 0.0f;
+			y = -1.0f;
+		}
+		else
+		{
+			x = -100.0f;
+			y = -100.0f;
+		}
+		m_ItemList [1].transform.position = new Vector3 (x, y, 0.0f);
 
 
 
-            item.SetActive(false);
-
-
-
-
-
-        }
-    }
-
-
-
-
-
-
+	}
 
 
 

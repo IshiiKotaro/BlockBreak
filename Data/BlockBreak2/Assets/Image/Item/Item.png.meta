@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: a8806e9bb33636e4e8b7ac7f6e2f5455
-timeCreated: 1508733897
+guid: 6f51d8ffc4af753439065636a5ca47f2
+timeCreated: 1511753077
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,8 @@ TextureImporter:
     21300010: Item_5
     21300012: Item_6
     21300014: Item_7
+    21300016: Item_8
+    21300018: Item_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -50,9 +52,9 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.44791666, y: 0.39583325}
-  spriteBorder: {x: 0, y: 0, z: 388, w: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -146,8 +148,8 @@ TextureImporter:
         y: 128
         width: 128
         height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -198,8 +200,8 @@ TextureImporter:
       name: Item_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 512
+        y: 128
         width: 128
         height: 128
       alignment: 0
@@ -212,7 +214,7 @@ TextureImporter:
       name: Item_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 0
         width: 128
         height: 128
@@ -226,7 +228,7 @@ TextureImporter:
       name: Item_6
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 0
         width: 128
         height: 128
@@ -240,6 +242,20 @@ TextureImporter:
       name: Item_7
       rect:
         serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Item_8
+      rect:
+        serializedVersion: 2
         x: 384
         y: 0
         width: 128
@@ -250,16 +266,22 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
-    outline:
-    - - {x: -256, y: 128}
-      - {x: -256, y: -128}
-      - {x: 256, y: -128}
-      - {x: 256, y: 128}
-    physicsShape:
-    - - {x: -256, y: 128}
-      - {x: -256, y: -128}
-      - {x: 256, y: -128}
-      - {x: 256, y: 128}
+    - serializedVersion: 2
+      name: Item_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -52,5 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pEffectPrefab:
-  - {fileID: 1599573951496756, guid: 486363c7998716242aec51ad75271138, type: 2}
-  - {fileID: 1274941862893590, guid: 0616df6a4a0924f43b11bd1a61c7ff59, type: 2}
+  - {fileID: 1788817590527392, guid: ff91a3f7fdd6da3449ed6f10f3b316cb, type: 2}
+  - {fileID: 1788817590527392, guid: ff91a3f7fdd6da3449ed6f10f3b316cb, type: 2}
+  - {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6, type: 2}
+  - {fileID: 1818663395070750, guid: 94676c1d83dfc0d408296a0bb0e1fc0a, type: 2}
+  - {fileID: 100006, guid: bcf46e46336114145b09deb1db11d480, type: 2}
+  - {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
+  - {fileID: 100002, guid: 75369bb81385f4904842bf20a51c14a2, type: 2}

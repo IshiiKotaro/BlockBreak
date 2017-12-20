@@ -17,15 +17,36 @@ public class BlockManager : SingletonMonoBehaviour<BlockManager> {
 
     public GameObject m_BlockMassPrefab;
 
-	List<GameObject> m_BlockMassList;
+
+	bool m_isNextWave = false;	//次のWAVEに進んでもいいか
 
 
-    int m_Wave;   //現在のWave数
 
-	private BlockManager(){
-		m_Wave = 1;
-		m_BlockMassList = new List<GameObject> ();
+	public bool GetisNextWave(){ return m_isNextWave; }//次のWAVEに進んでもいいか
+
+
+	public bool GetisBlockAllDelete()
+	{
+		//ブロックが全部消滅したかチェック
+		BlockMass[] massObjects = GameObject.FindObjectsOfType<BlockMass>();
+		int cnt = 0;
+		foreach (BlockMass Idx in massObjects)
+		{
+			cnt++;
+		}
+		if (cnt != 0)return false;
+
+		return true;
 	}
+
+	//
+	//
+	//
+
+	public void SetisNextWave(bool _isNext){ m_isNextWave = _isNext; }
+
+
+	private BlockManager(){}
 
 
 	public void Awake(){
@@ -38,81 +59,112 @@ public class BlockManager : SingletonMonoBehaviour<BlockManager> {
 	}
 
 
+	public void Init()
+	{
+		m_isNextWave = false;
+	}
+
 
 
 
     /*ブロック(配列)データの作成
-     _CreateCnt:一度に作るブロック列の数*/
-    public void Create(int _CreateCnt = 1)
+     _isAddWave WAVEを増やすかどうか
+     _BonusCnt 全消しボーナスで追加したブロック数 何もない時は-1を指定する */
+	public void Create(bool _isAddWave,int _BonusCnt)
     {
-        //現在のレベルに応じて、どれだけブロック等を出すか決める。あと、敵の数と耐久値も大雑把に決める
-        //int maxBCnt = m_Wave / m_MaxBlockCntUpInterval;
-        //int minBCnt = m_Wave / m_MinBlockCntUpInterval;
-        //int maxBHp = m_Wave / m_MaxBlockHpUpInterval;
-        //int minBHp = m_Wave / m_MinBlockHpUpInterval;
+		//SE
+		SoundManager.GetInstance.PlaySE ((int)SEType.BLOCKCREATE,1.0f,1.0f);
 
-		int maxBCnt = 5;
-		int minBCnt = m_Wave / m_MinBlockCntUpInterval;
-		int maxBHp = m_Wave / 10 + 1;
+
+
+		int maxBCnt = 7;//5
+		int minBCnt = ScoreManager.GetInstance.GetWave() / m_MinBlockCntUpInterval - 2;
+		int maxBHp = ScoreManager.GetInstance.GetWave() / 20 + 3;
 		int minBHp = 1;
 
 		if(maxBHp >= 7){maxBHp = 7;}
 		if(minBHp >= 7){minBHp = 7;}
-
-		for(int Cnt = 0;Cnt < _CreateCnt;Cnt++)
+		if(minBHp <= 0){minBHp = 1;}
+		if (PlayerPrefs.GetString ("GameMode") == "LargeCrowdMode") 
 		{
+			maxBCnt = 14;
 
-			//既存のブロックを下に下げる
-			BlockMass[] MassObjects = GameObject.FindObjectsOfType<BlockMass>();
-			foreach (BlockMass Idx in MassObjects)
-			{
-				Idx.MoveDown();
-			}
+			if(minBCnt <= 0){minBCnt = 0;}
+
+		} 
+		else
+		{
+			maxBCnt = 7;
+
+			if(minBCnt <= 0){minBCnt = 0;}
+		}
 
 
+
+
+
+		//for(int Cnt = 0;Cnt < _CreateCnt;Cnt++)
+		{
 
 			//ブロック1列生成
 			GameObject blockMass = (GameObject)Instantiate(m_BlockMassPrefab,transform.position,Quaternion.identity);
 			BlockMass blockCS = blockMass.GetComponent<BlockMass>();
-			blockCS.Create(m_Wave,minBCnt,maxBCnt,minBHp,maxBHp);
+			blockCS.Create(minBCnt,maxBCnt,minBHp,maxBHp,_BonusCnt);
 
 			//親子関係の設定
 			blockMass.transform.parent = transform.parent;
 
+			m_isNextWave = false;
 
-			//リストに入れる
-			m_BlockMassList.Add(blockMass);
+			if (_isAddWave == true) 
+			{
+				//Wave数更新
+				ScoreManager.GetInstance.AddWave();
+			}
 
-
-
-			//Wave数更新
-			m_Wave++;
 		}
     }
 
 
-	public void CheckDelete()
+	//次のブロック列を出す処理。　出し終わったらtrueを返す
+	//_isAddBonus ボーナスカウントを増やすか
+	//_isAddWave  WAVEを増やすかどうか
+	//_isCreateBlock ブロックを生成するかどうか
+	//_BonasCnt		全消しボーナスで追加したブロック数 何もない時は-1を指定する
+	public bool NextWave(bool _isAddBonus,bool _isAddWave,bool _isCreateBlock,int _BonusCnt)
 	{
-		for(int cnt = 0;cnt < m_BlockMassList.Count;cnt++)
+		bool MoveEndFlg = true;
+		//既存のブロックを下に下げる
+		BlockMass[] MassObjects = GameObject.FindObjectsOfType<BlockMass>();
+		foreach (BlockMass Idx in MassObjects)
 		{
-
-
-
-
-
+			MoveEndFlg = Idx.MoveDown();
+		}
+		//もしブロックの移動が終わったら
+		if(MoveEndFlg == false)return false;
+		foreach (BlockMass Idx in MassObjects)
+		{
+			Idx.AddIndex();
 		}
 
+		//ブロック列生成
+		if (_isCreateBlock == true) 
+		{
+			Create (_isAddWave,_BonusCnt);
+		}
+		else
+		{
+			m_isNextWave = false;
+		}
+			
+	
 
+		if (_isAddBonus == true)
+		{
+			EventManager.GetInstance.AddBonusCnt (1);//
+		}
 
-
-
-
-	}
-
-
-	void CheckCreate()
-	{
-		
+		return true;
 	}
 
 

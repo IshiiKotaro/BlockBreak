@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockBreak2", "Assembly-CSharp.csproj", "{E07ABCF9-684D-0EE8-00ED-7EF64695C50B}"
 EndProject
+Project("{7BE4D7FF-78CE-FF12-9759-0B7A1475DB60}") = "BlockBreak2", "Assembly-UnityScript.unityproj", "{4C3F926A-DDFB-55E3-97FF-252CA7BA1F67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{E07ABCF9-684D-0EE8-00ED-7EF64695C50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E07ABCF9-684D-0EE8-00ED-7EF64695C50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E07ABCF9-684D-0EE8-00ED-7EF64695C50B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3F926A-DDFB-55E3-97FF-252CA7BA1F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3F926A-DDFB-55E3-97FF-252CA7BA1F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3F926A-DDFB-55E3-97FF-252CA7BA1F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3F926A-DDFB-55E3-97FF-252CA7BA1F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

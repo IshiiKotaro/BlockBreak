@@ -70,3 +70,9 @@ TagManager:
   - name: Ball
     uniqueID: 2536441363
     locked: 0
+  - name: AssistIcon
+    uniqueID: 4101183829
+    locked: 0
+  - name: UI
+    uniqueID: 704333257
+    locked: 0
