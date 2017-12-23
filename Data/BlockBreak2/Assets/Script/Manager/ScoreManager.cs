@@ -5,8 +5,10 @@ using UnityEngine;
 public class ScoreManager  : SingletonMonoBehaviour<ScoreManager>{
 
 	public GameObject m_pComboPrefab;
+	public GameObject m_pChainImage;
 
-	GameObject nowCombo;
+	GameObject m_ChainObject;
+	GameObject m_ChainImage;
 
 	int m_NowScore = 0;
 	int m_AddScore = 0;
@@ -14,6 +16,8 @@ public class ScoreManager  : SingletonMonoBehaviour<ScoreManager>{
 	int m_NowWave = 0;
 	int m_NowCombo = 0;
 	int m_MaxCombo = 0;
+
+	float m_SpriteAlpha = 1.0f;
 
 	public void Awake()
 	{
@@ -53,16 +57,31 @@ public class ScoreManager  : SingletonMonoBehaviour<ScoreManager>{
 	public void AddWave(){ m_NowWave++; }
 
 
-	public void AddCombo(Vector3 _Pos){
+	public void AddCombo()
+	{
 		m_NowCombo++;
-	
+
+		m_SpriteAlpha = 1.0f;
+
+
 		//今のコンボ数をグラフィカルに表示
-		nowCombo = (GameObject)Instantiate(m_pComboPrefab,_Pos,Quaternion.identity);
-		
+		Destroy(m_ChainObject);
+		m_ChainObject = (GameObject)Instantiate(m_pComboPrefab,transform.position,Quaternion.identity);
+
+		Destroy (m_ChainImage);
+		m_ChainImage = (GameObject)Instantiate(m_pChainImage,transform.position,Quaternion.identity);
+		m_ChainImage.transform.position = new Vector3 (this.transform.position.x + 1.0f,this.transform.position.y,this.transform.position.z);
+		m_ChainImage.transform.localScale = new Vector3(0.5f,0.5f,1.0f);
+
 	}
 
 
-	public void ResetNowCombo(){ m_NowCombo = 0; }
+	public void ResetNowCombo()
+	{ 
+		Destroy (m_ChainImage);
+		Destroy(m_ChainObject);
+		m_NowCombo = 0; 
+	}
 
 
 	//

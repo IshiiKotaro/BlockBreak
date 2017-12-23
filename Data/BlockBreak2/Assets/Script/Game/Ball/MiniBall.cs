@@ -62,12 +62,8 @@ public class MiniBall : BallBase {
 	//何かしらのオブジェクトにぶつかった時
 	void OnCollisionEnter2D(Collision2D _Other)
 	{
-
+		if (m_isEvent == true)return;
 		if (BlockHit (_Other) == true)m_RefCnt++;
-
-
-
-		BlockHit(_Other);
 	}
 
 

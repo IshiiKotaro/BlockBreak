@@ -28,6 +28,8 @@ public class BlockBase : MonoBehaviour {
 	public bool GetIsAssistIcon(){ return m_isAssistIcon; }
 	public int GetAssistId(){ return m_AssistId; }
 
+	public Vector3 GetPos(){return transform.position;} 
+
     //===================
     // セッター
     //===================

@@ -54,6 +54,7 @@ MonoBehaviour:
   m_BGMPrefab:
   - {fileID: 1939891319283140, guid: 3fc29f9631431ff4f8dababf606753aa, type: 2}
   - {fileID: 1747218146282394, guid: 27a6d9a8251d3d74f939e807e90a0c08, type: 2}
+  - {fileID: 1729242814027972, guid: cf7429405f6b66f48aa4897ef4b42601, type: 2}
   m_SEPrefab:
   - {fileID: 1879508588848634, guid: 666959f5584c46e4fa3c4fcc3347047f, type: 2}
   - {fileID: 1033013309920324, guid: 42dd47dd2cbeb98438d637b10d28e5ab, type: 2}
@@ -67,3 +68,6 @@ MonoBehaviour:
   - {fileID: 1113624728841876, guid: 1521339a38c402243991f2ef7a0be10a, type: 2}
   - {fileID: 1801345667373046, guid: b26e8ee7d73110547b5fa45721ec8f3b, type: 2}
   - {fileID: 1903014215786540, guid: ad2ca99f01006214697510efe404aa36, type: 2}
+  - {fileID: 1633067408902360, guid: 239cd5fcecc81b44bae6af7c0219c4dd, type: 2}
+  - {fileID: 1969238485077434, guid: b5cbf49500f2d1342a21c508ca46a581, type: 2}
+  - {fileID: 1043742186096040, guid: ce54331dc9e606845b6742a26877238d, type: 2}

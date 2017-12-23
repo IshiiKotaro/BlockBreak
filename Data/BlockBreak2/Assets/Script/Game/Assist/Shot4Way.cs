@@ -37,14 +37,14 @@ public class Shot4Way : AssistBase
 		if (m_NowTime % 14 == 0) 
 		{
 			//4方向にminiballをばら撒く
-			//GameObject miniBall1 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
-			//miniBall1.GetComponent<MiniBall> ().Init(1,10,Vector3.up);
-			//GameObject miniBall2 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
-			//miniBall2.GetComponent<MiniBall> ().Init(1,10,Vector3.down);
-			//GameObject miniBall3 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
-			//miniBall3.GetComponent<MiniBall> ().Init(1,10,Vector3.left);
-			//GameObject miniBall4 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
-			//miniBall4.GetComponent<MiniBall> ().Init(1,10,Vector3.right);
+			GameObject miniBall1 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
+			miniBall1.GetComponent<MiniBall> ().Init(1,10,Vector3.up);
+			GameObject miniBall2 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
+			miniBall2.GetComponent<MiniBall> ().Init(1,10,Vector3.down);
+			GameObject miniBall3 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
+			miniBall3.GetComponent<MiniBall> ().Init(1,10,Vector3.left);
+			GameObject miniBall4 = (GameObject)Instantiate(m_pMiniBall,transform.position,Quaternion.identity);
+			miniBall4.GetComponent<MiniBall> ().Init(1,10,Vector3.right);
 			m_ShotCnt++;
 
 			//SEを鳴らす

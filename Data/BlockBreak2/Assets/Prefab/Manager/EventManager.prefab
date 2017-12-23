@@ -61,3 +61,5 @@ MonoBehaviour:
     type: 2}
   m_pTutorial: {fileID: 1447988194169406, guid: 773bf0f50b26c9745bcbd53125bdd33b,
     type: 2}
+  m_pChainBonus: {fileID: 1297714895918192, guid: b2bfb50a73bdbed42a761e031b98432e,
+    type: 2}

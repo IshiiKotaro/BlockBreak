@@ -9,13 +9,14 @@ public class TitleController : MonoBehaviour {
 		FadeManager.GetInstance.AllInit ();
 		SoundManager.GetInstance.Init ();
 
+
 		SoundManager.GetInstance.PlayBGM ((int)BGMType.TITLE);
 
 		//セーブデータ初期化　後で消す
-		PlayerPrefs.SetInt ("100WaveHighScore",1);
-		PlayerPrefs.SetInt ("QuickHighScore", 1);
-		PlayerPrefs.SetInt ("LargeHighScore", 1);
-		PlayerPrefs.SetInt ("Money", 114514);
+		//PlayerPrefs.SetInt ("100WaveHighScore",0);
+		//PlayerPrefs.SetInt ("QuickHighScore", 0);
+		//PlayerPrefs.SetInt ("LargeHighScore", 0);
+
 	}
 
 
@@ -26,7 +27,7 @@ public class TitleController : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		Application.LoadLevel ("ModeSelect");
+		Application.LoadLevel ("StageSelect");
 	}
 
 }

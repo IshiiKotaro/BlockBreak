@@ -54,3 +54,4 @@ MonoBehaviour:
   m_pTutorialMessagePrefab:
   - {fileID: 1757045383228300, guid: ecf21fe10eb98644c9dca7f92b8af413, type: 2}
   - {fileID: 1803121105106222, guid: f20778214b6e5ce45890f8af3de3f507, type: 2}
+  - {fileID: 1939873898273858, guid: ce91279d0ac0b064a9db59c55b558a13, type: 2}

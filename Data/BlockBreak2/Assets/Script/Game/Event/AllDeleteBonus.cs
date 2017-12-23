@@ -10,7 +10,6 @@ public class AllDeleteBonus : MonoBehaviour {
 	const float cDefMessageX = 10.0f;		//全消しメッセージの初期座標
 
 
-
 	GameObject m_AllBreakMessage;
 	GameObject m_Black;
 
@@ -18,7 +17,7 @@ public class AllDeleteBonus : MonoBehaviour {
 	int m_AllBlockBreakCnt = 0;		//全消し回数
 	int m_BonusCnt = 0;				//ボーナスブロック生成カウント
 	int m_MaxBonusCnt = 4;
-	bool m_isEvent = false;
+	//bool m_isEvent = false;
 
 
 	//フェード
@@ -33,7 +32,7 @@ public class AllDeleteBonus : MonoBehaviour {
 	//ゲッター
 	//========================
 
-	public bool GetisEvent(){ return m_isEvent; }
+	//public bool GetisEvent(){ return m_isEvent; }
 
 	//========================
 	//セッター
@@ -50,7 +49,7 @@ public class AllDeleteBonus : MonoBehaviour {
 		m_AllBlockBreakCnt = 0;
 		m_BonusCnt = 0;
 		m_MaxBonusCnt = 4;
-		m_isEvent = false;
+
 
 		m_FeedAlpha = 0.0f;
 		m_MessageX = cDefMessageX;
@@ -82,15 +81,15 @@ public class AllDeleteBonus : MonoBehaviour {
 
 		if (m_isAllBlockBreak == false){
 			//目標のWaveに到達してるかチェック
-			switch (PlayerPrefs.GetString ("GameMode")) 
+			switch (PlayerPrefs.GetInt ("GameMode")) 
 			{
-			case "100WaveMode":
+			case 0:
 				if (ScoreManager.GetInstance.GetWave () >= 100)return;
 				break;
-			case "QuickMode":
+			case 1:
 				if (ScoreManager.GetInstance.GetWave () >= 100)return;
 				break;
-			case "LargeCrowdMode":
+			case 2:
 				if (ScoreManager.GetInstance.GetWave () >= 100)return;
 				break;
 			}
@@ -99,7 +98,7 @@ public class AllDeleteBonus : MonoBehaviour {
 			if(BlockManager.GetInstance.GetisBlockAllDelete() == false)return;
 			m_isAllBlockBreak = true;
 			m_BonusCnt = 0;
-			m_isEvent = true;
+			EventManager.GetInstance.SetIsEvent (true);
 		} 
 
 
@@ -124,9 +123,9 @@ public class AllDeleteBonus : MonoBehaviour {
 				//ボーナスブロック生成終了
 				m_isAllBlockBreak = false;
 				m_AllBlockBreakCnt++;
-				m_MaxBonusCnt = 4 + (m_AllBlockBreakCnt / 2);
+				m_MaxBonusCnt = 7 + (m_AllBlockBreakCnt / 2);
 				if (m_MaxBonusCnt > 12)m_MaxBonusCnt = 12;
-				m_isEvent = false;
+				EventManager.GetInstance.SetIsEvent (false);
 
 				//ブロックマネージャーに知らせる
 				BlockManager.GetInstance.SetisNextWave (false);
@@ -172,6 +171,7 @@ public class AllDeleteBonus : MonoBehaviour {
 
 	void MessagePosUpdate()
 	{
+		EventManager.GetInstance.SetIsEvent (true);
 		if (m_MessageX >= 0.05f) 
 		{
 			m_MessageX *= 0.9f;

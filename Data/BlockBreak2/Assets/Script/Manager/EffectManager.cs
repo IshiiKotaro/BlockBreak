@@ -12,7 +12,7 @@ enum EffectType:int
 	THUNDER,
 	SKILL1,
 	SKILL2,
-
+	AURA_LOOP,
 	MAX,
 }
 
@@ -37,12 +37,12 @@ public class EffectManager :SingletonMonoBehaviour<EffectManager> {
 	}
 
 
-	public void CreateEffect(int _Id, Vector3 _Pos,float _Ang)
+	public GameObject CreateEffect(int _Id, Vector3 _Pos,float _Ang)
 	{
 		if (_Id < 0 || _Id >= (int)EffectType.MAX) 
 		{
 			Debug.Log("範囲外エフェクト" + _Id);
-			return;
+			return null;
 		}
 
 		//インスタンス生成
@@ -59,7 +59,7 @@ public class EffectManager :SingletonMonoBehaviour<EffectManager> {
 
 
 
-		
+		return effect;
 	}
 
 

@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &481717764
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1320,6 +1320,11 @@ MonoBehaviour:
   m_pQuickHighScore: {fileID: 1250636273}
   m_pLargeHighScore: {fileID: 29223674}
   m_pEndlessHighScore: {fileID: 506946621}
+  m_pButtonList:
+  - {fileID: 474521524}
+  - {fileID: 1808174394}
+  - {fileID: 996152925}
+  - {fileID: 756399478}
 --- !u!1001 &1752931787
 Prefab:
   m_ObjectHideFlags: 0

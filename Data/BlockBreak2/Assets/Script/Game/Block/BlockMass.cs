@@ -11,7 +11,8 @@ enum BlockMassIndex:int
 	GAMEOVER = 16,
 }
 
-public class BlockMass : MonoBehaviour {
+public class BlockMass : MonoBehaviour 
+{
 
 
     public GameObject m_BlockData;      //通常ブロック
@@ -79,7 +80,7 @@ public class BlockMass : MonoBehaviour {
 	public void Create(int _MinBC,int _MaxBC,int _MinBH,int _MaxBH,int _BonusCnt)
     {
 
-		if (PlayerPrefs.GetString ("GameMode") == "LargeCrowdMode") 
+		if (PlayerPrefs.GetInt ("GameMode") == 2) 
 		{
 			LEFT_MAX = -6;
 			RIGHT_MAX = 6;
@@ -149,7 +150,7 @@ public class BlockMass : MonoBehaviour {
 		//=====================================
 		GameObject block = (GameObject)Instantiate(
 			m_BlockData, 
-			new Vector3(transform.position.x + (float)(_Cnt * 0.65 * m_BlockScal), transform.position.y, 0.0f), 
+			new Vector3(transform.position.x + (float)(_Cnt * 0.65 * m_BlockScal), transform.position.y, 0.0f),
 			Quaternion.identity
 		);
 		//スケール調整
@@ -173,17 +174,19 @@ public class BlockMass : MonoBehaviour {
 		//==================================
 		//アシストアイコン設定(ランダムで)
 		//==================================
+		if(ScoreManager.GetInstance.GetWave() <= 7)return;
 		int createPer;	//制作確立
-		if (PlayerPrefs.GetString ("GameMode") == "LargeCrowdMode") 
+		if (PlayerPrefs.GetInt("GameMode") == 2) 
 		{
 			createPer = 1;
 		}
 		else
 		{
-			createPer = 3;
+			createPer = 7;
 		}
-		if (Random.Range(0, 100) >= createPer) return;
-		int assistIconId = Random.Range(0,AssistIconManager.GetInstance.GetPrefabListSize());
+		if (Random.Range(0, 200) >= createPer) return;
+		blockCS.Init(1);
+		int assistIconId = Random.Range(0,(int)AssistType.HYPER_LASER_T - 1);
 		blockCS.SetIsAssistIcon (true);
 		blockCS.SetAssistId (assistIconId);
 		AssistIconManager.GetInstance.Create(assistIconId,block.transform.position,block);
@@ -235,12 +238,13 @@ public class BlockMass : MonoBehaviour {
 		switch (_Wave)
 		{
 		//_AssistId,_Cnt(どこに作るか),HPの順番
-		// 1:AssistBlockCreate ((int)AssistType.METEOR, 3);break;
-		//case 11:AssistBlockCreate (2, 1);break;
-		//case 12:AssistBlockCreate (2, 2);break;
-		//case 13:AssistBlockCreate (2, 3);break;
-		//case 14:AssistBlockCreate (2, 4);break;
-		//case 15:AssistBlockCreate (2, 5);break;
+		//Case 1:AssistBlockCreate ((int)AssistType.METEOR, 3);break;
+		case 10:AssistBlockCreate ((int)AssistType.BOMB, 0);break;
+		case 15:AssistBlockCreate ((int)AssistType.SHOT_GUN, 5);break;
+		case 20:AssistBlockCreate ((int)AssistType.HYPER_LASER_R, 0);AssistBlockCreate ((int)AssistType.HYPER_LASER_T,6);break;
+		case 30:AssistBlockCreate (2, 4);break;
+		case 40:AssistBlockCreate (2, 5);break;
+		case 50:AssistBlockCreate ((int)AssistType.METEOR, 5);break;
 		//case 16:AssistBlockCreate (2, 6);break;
 		}
 	}
@@ -250,7 +254,7 @@ public class BlockMass : MonoBehaviour {
 	void BonusModeCreate(int _BonusCnt)
 	{
 		int isCreate = Random.Range (0, 100);
-		if (isCreate > 9)return;
+		if (isCreate > 20)return;
 
 		int CreateId = Random.Range (0, 10);
 

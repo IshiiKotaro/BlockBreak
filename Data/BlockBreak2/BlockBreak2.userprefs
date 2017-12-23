@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Manager\ItemManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Game\Assist\ShotGun.cs">
     <Files>
-      <File FileName="Assets\Script\Shop\Shop.cs" Line="112" Column="38" />
-      <File FileName="Assets\Script\Manager\ItemManager.cs" Line="59" Column="10" />
-      <File FileName="Assets\Script\GameController.cs" Line="52" Column="35" />
-      <File FileName="Assets\Script\Game\Item\ItemBase.cs" Line="35" Column="1" />
+      <File FileName="Assets\Script\TitleController\TitleController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Game\Event\GameStartMessage.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Game\Event\Tutorial.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Game\Event\AllDeleteBonus.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Game\Block\BlockMass.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Game\Assist\ShotGun.cs" Line="55" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

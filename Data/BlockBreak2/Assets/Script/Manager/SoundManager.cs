@@ -23,6 +23,9 @@ enum SEType:int
 	SPRING,
 	SWING,
 	START,
+	WIN,
+	LOSE,
+	LASER,
 };
 
 
@@ -30,11 +33,12 @@ enum BGMType:int
 {
 	TITLE = 0,
 	STAGEBGM1,
+	RESULT,
 }
 
 
 public class SoundManager : SingletonMonoBehaviour<SoundManager>{
-
+	
 	public GameObject[] m_BGMPrefab;
 	public GameObject[] m_SEPrefab;
 

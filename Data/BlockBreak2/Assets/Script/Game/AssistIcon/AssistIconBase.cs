@@ -20,7 +20,7 @@ public class AssistIconBase : MonoBehaviour {
 	//============================
 
 	public void SetIdAndOwner(int _Id,GameObject _Owner) {
-		m_AssistIconId = _Id;
+		m_AssistIconId = _Id; 
 		m_OwnerBlock = _Owner;
 	}
 

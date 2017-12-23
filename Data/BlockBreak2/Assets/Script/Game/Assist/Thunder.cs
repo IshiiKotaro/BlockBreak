@@ -17,6 +17,9 @@ public class Thunder : AssistBase {
 
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.THUNDER,1.0f,1.0f);
+		SoundManager.GetInstance.PlaySE ((int)SEType.BOMB, 1.0f, 1.0f);
+
+
 	}
 	
 	// Update is called once per frame
@@ -26,7 +29,7 @@ public class Thunder : AssistBase {
 
 		
 		m_NowTime++;
-		if (m_NowTime >= 5) 
+		if (m_NowTime >= 5)
 		{
 			//ブロックだけ取得して、全ブロックに1ダメージを与える。
 			Block[] blockObjects = GameObject.FindObjectsOfType<Block>();

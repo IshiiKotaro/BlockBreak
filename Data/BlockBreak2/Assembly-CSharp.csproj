@@ -51,6 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
+     <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
+     <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
+     <Compile Include="Assets\GE Common Assets\Scripts\GE_UIResponder.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo00.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo01.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo02.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo03.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo04.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo05.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo06.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo07.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo08.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
+     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+     <Compile Include="Assets\ImportAsset\Elemental Free\Scripts\GE_ELF_Demo.cs" />
      <Compile Include="Assets\Script\Camera\CamAspect.cs" />
      <Compile Include="Assets\Script\Camera\CameraController.cs" />
      <Compile Include="Assets\Script\EffectData\EffectData.cs" />
@@ -77,6 +94,7 @@
      <Compile Include="Assets\Script\Game\Block\BlockMass.cs" />
      <Compile Include="Assets\Script\Game\BreakBlock\BreakBlock.cs" />
      <Compile Include="Assets\Script\Game\Event\AllDeleteBonus.cs" />
+     <Compile Include="Assets\Script\Game\Event\ChainBonus.cs" />
      <Compile Include="Assets\Script\Game\Event\GameClear.cs" />
      <Compile Include="Assets\Script\Game\Event\GameOver.cs" />
      <Compile Include="Assets\Script\Game\Event\GameStartMessage.cs" />
@@ -108,6 +126,7 @@
      <Compile Include="Assets\Script\Result\Result.cs" />
      <Compile Include="Assets\Script\SaveData\SaveData.cs" />
      <Compile Include="Assets\Script\Scroll\Scroll.cs" />
+     <Compile Include="Assets\Script\SetAssit\SetAssist.cs" />
      <Compile Include="Assets\Script\Shop\Shop.cs" />
      <Compile Include="Assets\Script\SoundData\SoundData.cs" />
      <Compile Include="Assets\Script\StageSelect\StageSelectController.cs" />
@@ -115,6 +134,10 @@
      <Compile Include="Assets\Script\TitleController\TapToStart.cs" />
      <Compile Include="Assets\Script\TitleController\TitleController.cs" />
      <None Include="Assets\ImportAsset\Effect\MagicEffectsPackFree\ReadMe.txt" />
+     <None Include="Assets\ImportAsset\Elemental Free\Readme.txt" />
+     <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
+     <None Include="Assets\GE Common Assets\Readme.txt" />
+     <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>C:/Users/kitunelove/Desktop/Unity/BlockBreak2/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
@@ -138,6 +161,12 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="GETween">
+ <HintPath>C:/Users/kitunelove/Desktop/Unity/BlockBreak2/Assets/GUI Animator/Common/Plugins/GETween.dll</HintPath>
+ </Reference>
+ <Reference Include="GUIAnimatorFREE">
+ <HintPath>C:/Users/kitunelove/Desktop/Unity/BlockBreak2/Assets/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

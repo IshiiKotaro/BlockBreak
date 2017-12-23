@@ -22,6 +22,8 @@ public class BlockManager : SingletonMonoBehaviour<BlockManager> {
 
 
 
+
+
 	public bool GetisNextWave(){ return m_isNextWave; }//次のWAVEに進んでもいいか
 
 
@@ -85,7 +87,7 @@ public class BlockManager : SingletonMonoBehaviour<BlockManager> {
 		if(maxBHp >= 7){maxBHp = 7;}
 		if(minBHp >= 7){minBHp = 7;}
 		if(minBHp <= 0){minBHp = 1;}
-		if (PlayerPrefs.GetString ("GameMode") == "LargeCrowdMode") 
+		if (PlayerPrefs.GetInt ("GameMode") == 2) 
 		{
 			maxBCnt = 14;
 

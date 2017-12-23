@@ -16,6 +16,7 @@ public class HyperLaser : AssistBase {
 		{
 			m_AssistObject = (GameObject)Instantiate(m_pAssistObject,transform.position,Quaternion.identity);
 			m_AObjectPos = m_AssistObject.transform.position;
+			SoundManager.GetInstance.PlaySE ((int)SEType.LASER,1.0f,1.0f);
 		}
 
 		switch (m_pDirType) 

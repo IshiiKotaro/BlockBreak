@@ -9,12 +9,14 @@ public class EventManager : SingletonMonoBehaviour<EventManager> {
 	public GameObject m_pGameOver;
 	public GameObject m_pGameClear;
 	public GameObject m_pTutorial;
+	public GameObject m_pChainBonus;
 
 	AllDeleteBonus m_AllDeleteCS;
 	GameStartMessage m_GameStartCS;
 	GameOver m_GameOverCS;
 	GameClear m_GameClearCS;
 	Tutorial m_TutorialCS;
+	ChainBonus m_ChainBonusCS;
 
 
 	bool m_isEvent = false;		//イベントフラグ
@@ -34,10 +36,21 @@ public class EventManager : SingletonMonoBehaviour<EventManager> {
 	//セッター
 	//========================
 
+	public void SetIsEvent(bool _flg ){ m_isEvent = _flg; }
+
 	public void AddBonusCnt(int _Add){
 		if (m_AllDeleteCS == null)return;
 		m_AllDeleteCS.AddBonusCnt (_Add);
 	}
+
+
+	public void SetChainBonus()
+	{
+		if (m_ChainBonusCS == null)return;
+
+		m_ChainBonusCS.SetChainBonus ();
+	}
+
 
 
 	public void CamQuake(float _QuakeX,float _QuakeY)
@@ -78,12 +91,14 @@ public class EventManager : SingletonMonoBehaviour<EventManager> {
 		m_GameOverCS = m_pGameOver.GetComponent<GameOver> ();
 		m_GameClearCS = m_pGameClear.GetComponent<GameClear> ();
 		m_TutorialCS = m_pTutorial.GetComponent<Tutorial> ();
+		m_ChainBonusCS = m_pChainBonus.GetComponent<ChainBonus> ();
 
 		if (m_AllDeleteCS == null)Debug.Log("AllDeleteCS　NULL");
 		if (m_GameStartCS == null)Debug.Log("GameStartCS　NULL");
 		if (m_GameOverCS == null)Debug.Log("GameOverCS　NULL");
 		if (m_GameClearCS == null)Debug.Log("GameClearCS　NULL");
 		if (m_TutorialCS == null)Debug.Log("TutorialCS　NULL");
+		if (m_ChainBonusCS == null)Debug.Log ("ChainBonusCS NULL");
 
 		if (m_AllDeleteCS != null)
 		{
@@ -104,6 +119,10 @@ public class EventManager : SingletonMonoBehaviour<EventManager> {
 		if (m_TutorialCS != null) 
 		{
 			m_TutorialCS.Init ();
+		}
+		if (m_ChainBonusCS != null) 
+		{
+			m_ChainBonusCS.Init();
 		}
 
 	
@@ -144,7 +163,11 @@ public class EventManager : SingletonMonoBehaviour<EventManager> {
 
 		//イベント　全消しチェック
 		m_AllDeleteCS.AllBlockBreakCheck();
-		m_isEvent = m_AllDeleteCS.GetisEvent();
+
+		//チェインボーナス
+		m_ChainBonusCS.ChainBonusUpdate();
+
+
 	}
 		
 

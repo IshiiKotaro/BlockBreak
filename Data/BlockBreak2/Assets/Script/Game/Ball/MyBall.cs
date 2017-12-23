@@ -117,7 +117,7 @@ public class MyBall : BallBase {
 		m_NowHp = m_MaxHp;
 		m_Atk = 1;
 
-		ScoreManager.GetInstance.ResetNowCombo ();
+
 
 		//ボール座標の再設定
 		transform.position = new Vector3(nowPos.x, -3.81f, 0.0f);
@@ -174,8 +174,6 @@ public class MyBall : BallBase {
 
 	void Shot()
 	{
-		if (m_isShotFlg == true) return;
-
 		if (SwapCheck () > cSwapDis) 
 		{
 			m_isSwap = true;
@@ -184,6 +182,10 @@ public class MyBall : BallBase {
 		{
 			m_isSwap = false;
 		}
+			
+		if (m_isShotFlg == true) return;
+
+
 
 
 
@@ -195,13 +197,6 @@ public class MyBall : BallBase {
 			{
 				//タップした座標を取得
 				m_DownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				//エイム画像を表示
-				for(int cnt = 0;cnt < m_MoveVecImageList.Count;cnt++)
-				{
-					m_MoveVecImageList[cnt].SetActive (true);
-				}
-
-
 				m_isAimFlg = true;
 			}
 			//現在タップしている座標を記憶
@@ -224,7 +219,11 @@ public class MyBall : BallBase {
 				//ボールを小刻みに震わせる。
 				transform.position = new Vector3(transform.position.x + m_TrembleDis,transform.position.y,transform.position.z);
 				m_TrembleDis *= -1.0f;
-
+				//エイム画像を表示
+				for(int cnt = 0;cnt < m_MoveVecImageList.Count;cnt++)
+				{
+					SpriteManager.GetInstance.SetSpriteAlpha (m_MoveVecImageList[cnt],1.0f);
+				}
 			}
 
 		}
@@ -241,15 +240,13 @@ public class MyBall : BallBase {
 				return;
 			}
 
-
-
-			m_isShotFlg = true;
-
-			//移動ベクトル画像を非表示に
+			//エイム画像を表示
 			for(int cnt = 0;cnt < m_MoveVecImageList.Count;cnt++)
 			{
-				m_MoveVecImageList [cnt].SetActive (false);
+				SpriteManager.GetInstance.SetSpriteAlpha (m_MoveVecImageList[cnt],0.0f);
 			}
+
+			m_isShotFlg = true;
 
 
 			//移動方向の決定
@@ -261,12 +258,17 @@ public class MyBall : BallBase {
 			m_MoveVec.y = Vec.y;
 			m_MoveVec.Normalize();
 
+			//コンボ初期化
+			ScoreManager.GetInstance.ResetNowCombo ();
 
 			//UpPos　DownPosが同じ座標だとバグる
 			if(m_UpPos == m_DownPos)
 			{
 				m_MoveVec = Vector3.up;
 			}
+
+
+
 		}
 	}
 		

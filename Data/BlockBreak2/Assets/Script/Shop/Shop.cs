@@ -106,10 +106,14 @@ public class Shop : MonoBehaviour{
 			PlayerPrefs.SetInt ("Meteor",1);
 			break;
 		case (int)ShopNo.VECTORUP:
-			PlayerPrefs.SetInt ("VectorUp",1);
+			PlayerPrefs.SetInt ("VectorUp", 1);
+			PlayerPrefs.SetFloat ("Item1X",-2.0f);
+			PlayerPrefs.SetFloat ("Item1Y",-2.5f);
 			break;
 		case (int)ShopNo.SHOT4WAY:
 			PlayerPrefs.SetInt ("Shot4Way",1);
+			PlayerPrefs.SetFloat ("Item2X",2.0f);
+			PlayerPrefs.SetFloat ("Item2Y",-2.5f);
 			break;
 		case (int)ShopNo.TMP:
 			PlayerPrefs.SetInt ("Tmp",1);

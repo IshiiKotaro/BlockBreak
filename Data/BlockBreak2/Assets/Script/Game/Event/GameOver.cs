@@ -54,23 +54,23 @@ public class GameOver : MonoBehaviour {
 		if (m_isGameOver == true)return;
 
 		//大群モードの時だけ、ゲームオーバー条件が違うので、チェック
-		int gamemode = 1;
-		if (PlayerPrefs.GetString ("GameMode") == "LargeCrowdMode") 
+		int gamemode = (int)BlockMassIndex.GAMEOVER;
+		if (PlayerPrefs.GetInt ("GameMode") == 2) 
 		{
-			gamemode = 2;
+			gamemode = 29;
 		}
 
 
 		BlockMass[] massObjects = GameObject.FindObjectsOfType<BlockMass>();
 		foreach (BlockMass Idx in massObjects)
 		{
-			if (Idx.GetIndex () < (int)BlockMassIndex.GAMEOVER * gamemode)continue;
+			if (Idx.GetIndex () <  gamemode)continue;
 
 			//カメラの揺れ
 			EventManager.GetInstance.CamQuake (0.1f,-0.1f);
 
 			//SE再生
-
+			SoundManager.GetInstance.PlaySE((int)SEType.LOSE,1.0f,1.0f);
 
 			m_isGameOver = true;
 		}
@@ -82,7 +82,7 @@ public class GameOver : MonoBehaviour {
 		GameOverCheck ();
 
 		if (m_isGameOver == false)return;
-
+		EventManager.GetInstance.SetIsEvent (true);
 
 		if (m_BlackAlpha < 0.4f)
 		{
@@ -119,10 +119,12 @@ public class GameOver : MonoBehaviour {
 		if (m_isNext == true)
 		{
 			//戦績をリザルトに送る。
-			PlayerPrefs.SetString("GameMode","100WaveMode");
 			PlayerPrefs.SetInt("MyScore",ScoreManager.GetInstance.GetScore());
 			PlayerPrefs.SetInt ("MaxCombo",ScoreManager.GetInstance.GetMaxCombo());
 			PlayerPrefs.SetFloat ("ClearBonus", 0.5f);
+
+			EventManager.GetInstance.SetIsEvent (false);
+
 			Application.LoadLevel ("Result");
 		}
 

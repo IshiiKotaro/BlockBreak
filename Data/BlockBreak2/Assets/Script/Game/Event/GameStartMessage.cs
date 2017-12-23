@@ -23,7 +23,7 @@ public class GameStartMessage : MonoBehaviour {
 	int m_Index = 0;
 
 	bool m_isStart = false;
-
+	bool m_isGoSE = false;
 
 
 
@@ -88,11 +88,17 @@ public class GameStartMessage : MonoBehaviour {
 
 		m_Time = 0;
 		m_Index = 0;
+
+		m_isGoSE = false;
+
+
 	}
 
 	
 	public void StartMessage()
 	{
+		EventManager.GetInstance.SetIsEvent (true);
+
 		m_Time++;
 		if (m_Time % 10 == 0 && m_Index < m_ReadySprite.Length) 
 		{
@@ -126,7 +132,6 @@ public class GameStartMessage : MonoBehaviour {
 		if (m_GoScal <= 0.1f) 
 		{
 
-
 			SpriteManager.GetInstance.SetSpriteAlpha (m_GoSprite[0],0.0f);
 			SpriteManager.GetInstance.SetSpriteAlpha (m_GoSprite[1],1.0f);
 			for(int cnt = 0; cnt < m_ReadySprite.Length; cnt++)
@@ -136,6 +141,14 @@ public class GameStartMessage : MonoBehaviour {
 				m_ReadyBreakPos[cnt].x += m_ReadyBreakVec[cnt].x;
 				m_ReadyBreakPos[cnt].y += m_ReadyBreakVec[cnt].y;
 			}
+
+			if (m_isGoSE == false) 
+			{
+				SoundManager.GetInstance.PlaySE ((int)SEType.BOMB,1.0f,1.0f);
+				EventManager.GetInstance.CamQuake (0.3f,0.3f);
+				m_isGoSE = true;
+			}
+
 		}
 
 		if (m_Time >= 200) 
@@ -153,6 +166,7 @@ public class GameStartMessage : MonoBehaviour {
 			}
 
 			m_isStart = true;
+			EventManager.GetInstance.SetIsEvent (false);
 		}
 
 

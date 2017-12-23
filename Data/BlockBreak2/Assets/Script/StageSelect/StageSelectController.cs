@@ -10,8 +10,18 @@ public class StageSelectController : MonoBehaviour {
 	public Text m_pLargeHighScore;
 	public Text m_pEndlessHighScore;
 
+	public GameObject[] m_pButtonList;
+
+
+
 	bool m_isTap = false;
 	bool m_isNext = false;
+
+	void Start()
+	{
+		SoundManager.GetInstance.PlayBGM ((int)BGMType.TITLE);
+	}
+
 
 	void Update()
 	{
@@ -26,18 +36,21 @@ public class StageSelectController : MonoBehaviour {
 		FadeManager.GetInstance.SetFadeEndReset ();
 
 
-		switch (PlayerPrefs.GetString ("GameMode")) 
+		switch (PlayerPrefs.GetInt ("GameMode")) 
 		{
-		case "100WaveMode":
+		case 0:
 			Application.LoadLevel ("Main");
+			Debug.Log ("100");
 			break;
-		case "QuickMode":
+		case 1:
 			Application.LoadLevel ("Main");
+			Debug.Log ("Quick");
 			break;
-		case "LargeCrowdMode":
+		case 2:
 			Application.LoadLevel ("Main");
+			Debug.Log ("Smal");
 			break;
-		case "EndlessMode":
+		case 3:
 			Application.LoadLevel ("Main");
 			break;
 		}
@@ -54,12 +67,10 @@ public class StageSelectController : MonoBehaviour {
 		m_isTap = true;
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
-		PlayerPrefs.SetString ("GameMode","100WaveMode");
-
+		PlayerPrefs.SetInt ("GameMode",0);
+		ButtonMove ();
 		//フェード開始
 		FadeManager.GetInstance.FadeOutInit ();
-
-
 	}
 
 
@@ -70,8 +81,8 @@ public class StageSelectController : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		PlayerPrefs.SetString ("GameMode","QuickMode");
-
+		PlayerPrefs.SetInt("GameMode",1);
+		ButtonMove ();
 
 		//フェード開始
 		FadeManager.GetInstance.FadeOutInit ();
@@ -85,8 +96,10 @@ public class StageSelectController : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		PlayerPrefs.SetString ("GameMode","EndlessMode");
 
+
+		PlayerPrefs.SetInt("GameMode",3);
+		ButtonMove ();
 
 		//フェード開始
 		FadeManager.GetInstance.FadeOutInit ();
@@ -100,8 +113,8 @@ public class StageSelectController : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		PlayerPrefs.SetString ("GameMode","LargeCrowdMode");
-
+		PlayerPrefs.SetInt ("GameMode",2);
+		ButtonMove ();
 		//フェード開始
 		FadeManager.GetInstance.FadeOutInit ();
 	}
@@ -109,10 +122,22 @@ public class StageSelectController : MonoBehaviour {
 
 	public void OnBackModeClicked()
 	{
+		if (m_isTap == true)return;
+		m_isTap = true;
+
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
+		ButtonMove ();
+		Application.LoadLevel ("Title");
+	}
 
-		Application.LoadLevel ("ModeSelect");
+
+	void ButtonMove()
+	{
+		for (int cnt = 0; cnt < m_pButtonList.Length; cnt++) 
+		{
+			m_pButtonList [cnt].SetActive (false);
+		}
 	}
 
 }

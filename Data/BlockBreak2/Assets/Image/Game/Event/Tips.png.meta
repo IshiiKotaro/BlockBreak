@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 644b5d440af40c249a67151ffd314837
-timeCreated: 1513563226
+timeCreated: 1514003364
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Tips_0
     21300002: Tips_1
+    21300004: Tips_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -141,7 +142,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,6 +152,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tips_2
+      rect:
+        serializedVersion: 2
+        x: 1024
         y: 0
         width: 512
         height: 512

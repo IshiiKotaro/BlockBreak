@@ -16,6 +16,8 @@ public class CrossLaser : AssistBase {
 		EffectManager.GetInstance.CreateEffect ((int)EffectType.LASER_R,transform.position,90.0f);
 		EffectManager.GetInstance.CreateEffect ((int)EffectType.LASER_R,transform.position,180.0f);
 		EffectManager.GetInstance.CreateEffect ((int)EffectType.LASER_R,transform.position,270.0f);
+
+		SoundManager.GetInstance.PlaySE ((int)SEType.LASER,1.0f,1.0f);
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,8 @@ public class CrossLaser : AssistBase {
 		{
 			//発射エフェクト
 			EffectManager.GetInstance.CreateEffect((int)EffectType.SKILL1,transform.position,0.0f);
+
+
 		}
 
 		if(m_NowTime >= m_ShotTime)m_isFire = true;

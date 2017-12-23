@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour{
 		BlockManager.GetInstance.Init ();
 		EventManager.GetInstance.Init ();
 		ScoreManager.GetInstance.Init ();
-		ItemManager.GetInstance.Init ();
+		//ItemManager.GetInstance.Init ();
 
 		FadeManager.GetInstance.FadeInInit ();
 
@@ -86,17 +86,38 @@ public class GameController : MonoBehaviour{
 		{
 			bool isCreate = true;
 			bool isAddWave = true;
-			if (PlayerPrefs.GetString ("GameMode") != "EndressMode" && ScoreManager.GetInstance.GetWave() >= 100)
+			if (PlayerPrefs.GetInt ("GameMode") != 3 && ScoreManager.GetInstance.GetWave() >= 100)
 			{
 				isCreate = false;
 				isAddWave = false;
 			}
 
 			//大群モード以外の時
-			if (PlayerPrefs.GetString ("GameMode") != "LargeCrowdMode") 
+			if (PlayerPrefs.GetInt ("GameMode") != 2) 
 			{
-				BlockManager.GetInstance.NextWave (false, isAddWave, isCreate,-1);
-				m_Ball_CS.Init ();
+				//小型ボールが全部倒れたら次の処理をする
+				int ballcnt = 0;
+				int assistcnt = 0;
+				MiniBall[] miniObjects = GameObject.FindObjectsOfType<MiniBall>();
+				foreach (MiniBall Idx in miniObjects)
+				{
+					ballcnt++;
+				}
+				AssistBase[] assistObjects = GameObject.FindObjectsOfType<AssistBase>();
+				foreach (AssistBase Idx in assistObjects)
+				{
+					assistcnt++;
+				}
+
+
+				if (ballcnt <= 0 && assistcnt <= 0) 
+				{
+					BlockManager.GetInstance.NextWave (false, isAddWave, isCreate,-1);
+					m_Ball_CS.Init ();
+					//チェインボーナス
+					EventManager.GetInstance.SetChainBonus();
+
+				}
 			} 
 			else 
 			{
@@ -110,7 +131,7 @@ public class GameController : MonoBehaviour{
 		}
 
 		//クイックモード専用処理
-		if (PlayerPrefs.GetString ("GameMode") == "QuickMode")
+		if (PlayerPrefs.GetInt ("GameMode") == 1)
 		{
 			m_NowTime += (1.0f * Time.deltaTime);
 			if (m_NowTime >= 5)
@@ -122,13 +143,14 @@ public class GameController : MonoBehaviour{
 		//大群モード専用処理
 		if (m_isNextWaveLarge == true) 
 		{
-			if (m_CreateCnt < 3)
+			if (m_CreateCnt < 2)
 			{
 				if (BlockManager.GetInstance.NextWave (true, true, true,-1) == true) 
 				{
 					m_CreateCnt++;
 				}
 				m_Ball_CS.Init ();
+
 			}
 			else 
 			{

@@ -133,8 +133,7 @@ public class BallBase : MonoBehaviour {
 		m_isHit = true;
 
 
-		//スコア加算
-		ScoreManager.GetInstance.AddScore(200 * (ScoreManager.GetInstance.GetNowCombo() + 1));
+
 
 		//跳ね返り処理
 		//自身の座標と、接触座標を取得

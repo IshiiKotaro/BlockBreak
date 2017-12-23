@@ -67,5 +67,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8ce80d29ee2884c9268c6a8ec483b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pAssistObject: {fileID: 1381894734249254, guid: d328e5ec087b8a346ac21b980aa085a8,
+  m_pAssistObject: {fileID: 1816008429357740, guid: 9e68bfda4c34d1c4d91f4d8d51252175,
     type: 2}

@@ -50,7 +50,7 @@ public class GameClear : MonoBehaviour {
 		for (int cnt = 0; cnt < 6; cnt++)
 		{
 			GameObject block = (GameObject)Instantiate(
-				m_pBlockPrefab[cnt], 
+				m_pBlockPrefab[cnt],
 				transform.position,
 				Quaternion.identity
 			);
@@ -120,7 +120,11 @@ public class GameClear : MonoBehaviour {
 			SpriteManager.GetInstance.SetSpriteAlpha (m_BlockList[cnt],1.0f);
 		}
 
+		//SE再生
+		SoundManager.GetInstance.PlaySE((int)SEType.LOSE,1.0f,1.0f);
 
+
+		EventManager.GetInstance.SetIsEvent (true);
 	}
 
 
@@ -147,6 +151,8 @@ public class GameClear : MonoBehaviour {
 		//エフェクト
 		EffectManager.GetInstance.CreateEffect((int)EffectType.SKILL2,m_BlockList[m_NowIndex].transform.position,0.0f);
 
+		//カメラ揺らす
+		EventManager.GetInstance.CamQuake(-0.2f,-0.2f);
 
 		m_NowIndex++;
 	}
@@ -167,10 +173,12 @@ public class GameClear : MonoBehaviour {
 		if (m_NowTime < 5)return;
 
 		//戦績をリザルトに送る。
-		PlayerPrefs.SetString("GameMode","100WaveMode");
+		PlayerPrefs.SetInt("GameMode",0);
 		PlayerPrefs.SetInt("MyScore",ScoreManager.GetInstance.GetScore());
 		PlayerPrefs.SetInt ("MaxCombo",ScoreManager.GetInstance.GetMaxCombo());
 		PlayerPrefs.SetFloat ("ClearBonus", 1.25f);
+
+		EventManager.GetInstance.SetIsEvent (false);
 
 		Application.LoadLevel ("Result");
 	}
@@ -178,7 +186,7 @@ public class GameClear : MonoBehaviour {
 
 	void Clear100WaveModeCheck()
 	{
-		if (PlayerPrefs.GetString ("GameMode") != "100WaveMode")return; 
+		if (PlayerPrefs.GetInt ("GameMode") != 0)return; 
 		if (ScoreManager.GetInstance.GetWave () < 100)return; 
 		if (BlockManager.GetInstance.GetisBlockAllDelete () == false)return;
 
@@ -189,7 +197,7 @@ public class GameClear : MonoBehaviour {
 
 	void ClearQuickModeCheck()
 	{
-		if (PlayerPrefs.GetString ("GameMode") != "QuickMode")return; 
+		if (PlayerPrefs.GetInt ("GameMode") != 1)return; 
 		if (ScoreManager.GetInstance.GetWave () < 100)return; 
 		if (BlockManager.GetInstance.GetisBlockAllDelete () == false)return;
 
@@ -199,7 +207,7 @@ public class GameClear : MonoBehaviour {
 	//大群モードのクリア判定
 	void ClearLargeCrowdModeCheck()
 	{
-		if (PlayerPrefs.GetString ("GameMode") != "LargeCrowdMode")return; 
+		if (PlayerPrefs.GetInt ("GameMode") != 2)return; 
 		if (ScoreManager.GetInstance.GetWave () < 100)return; 
 		if (BlockManager.GetInstance.GetisBlockAllDelete () == false)return;
 

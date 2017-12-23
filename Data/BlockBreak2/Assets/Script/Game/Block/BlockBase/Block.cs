@@ -12,6 +12,12 @@ public class Block : BlockBase {
 	public override void Init(int _Hp)
 	{
 		m_Hp = _Hp;
+		for (int Cnt = 0; Cnt < m_BlockPrefab.Length; Cnt++) 
+		{
+			m_BlockPrefab[Cnt].SetActive(false);
+		}
+
+
 		for(int Cnt = 0;Cnt < m_Hp; Cnt++)
 		{
 			m_BlockPrefab[Cnt].SetActive(true);
@@ -49,6 +55,9 @@ public class Block : BlockBase {
 	public void BlockDamage(int _Damage,bool _isLowCost)
 	{
 
+		//スコア加算
+		ScoreManager.GetInstance.AddScore(200 * (ScoreManager.GetInstance.GetNowCombo() + 1));
+
 		if (_isLowCost == false) 
 		{
 			//破壊SE コンボ数に応じてサウンドのピッチを上げる
@@ -64,7 +73,7 @@ public class Block : BlockBase {
 
 
 		//コンボ加算
-		ScoreManager.GetInstance.AddCombo (transform.position);
+		ScoreManager.GetInstance.AddCombo ();
 		//今の色のブロックを非表示
 		if (m_Hp > 0) {
 			m_BlockPrefab[m_Hp - 1].SetActive(false);
@@ -83,10 +92,10 @@ public class Block : BlockBase {
 			}
 
 			//瓦礫生成
-			if (PlayerPrefs.GetString ("GameMode") != "LargeCrowdMode") 
+			if (PlayerPrefs.GetInt("GameMode") != 2) 
 			{
 				BreakBlockManager.GetInstance.Create(BeHp,transform.position);
-				BreakBlockManager.GetInstance.Create(BeHp,transform.position);
+				//BreakBlockManager.GetInstance.Create(BeHp,transform.position);
 			}
 
 

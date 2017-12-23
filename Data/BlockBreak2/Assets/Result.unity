@@ -582,7 +582,6 @@ MonoBehaviour:
   m_pMaxCombo: {fileID: 48441164}
   m_pClearBonus: {fileID: 1712786445}
   m_pTotalScore: {fileID: 644814726}
-  m_pGetMoney: {fileID: 1188513722}
 --- !u!4 &1008377858
 Transform:
   m_ObjectHideFlags: 0
@@ -705,9 +704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GetMoney
-
-'
+  m_Text: 
 --- !u!222 &1188513723
 CanvasRenderer:
   m_ObjectHideFlags: 0

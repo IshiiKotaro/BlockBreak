@@ -28,7 +28,7 @@ public class ModeSelectController : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		Application.LoadLevel ("Main");
+		Application.LoadLevel ("SetAssist");
 	}
 
 

@@ -12,11 +12,11 @@ public class Result : MonoBehaviour {
 	public Text m_pMaxCombo;
 	public Text m_pClearBonus;
 	public Text m_pTotalScore;
-	public Text m_pGetMoney;
 
 	GameObject m_HighScore;
 
-	string m_GameMode;
+	//string m_GameMode;
+	int m_GameModeCnt;
 
 	int m_MyScore = 0;		//自身が稼いだスコア
 	int m_MyScoreAdd = 0;	//スコア足し込む用
@@ -84,7 +84,7 @@ public class Result : MonoBehaviour {
 		m_NowTime = 0;
 
 		//戦績を取得
-		m_GameMode = PlayerPrefs.GetString("GameMode");
+		m_GameModeCnt = PlayerPrefs.GetInt("GameMode");
 		m_MyScoreAdd = PlayerPrefs.GetInt("MyScore");
 		m_MaxComboAdd = PlayerPrefs.GetInt ("MaxCombo");
 		m_ClearBunus = PlayerPrefs.GetFloat ("ClearBonus");
@@ -100,33 +100,42 @@ public class Result : MonoBehaviour {
 		NowMoney += m_GetMoneyAdd;
 		PlayerPrefs.SetInt ("Money", NowMoney);
 
-		//ハイスコアチェック
-		switch (m_GameMode)
+		//ハイスコアチェック と　ゲームモード識別
+		switch (m_GameModeCnt)
 		{
-		case "100WaveMode":
+		case 0:
+			m_pGameMode.text = "100WaveMode";
+
 			m_BeforeHighScore = PlayerPrefs.GetInt ("100WaveHighScore");
 			if (m_TotalScoreAdd <= m_BeforeHighScore)break;
 			m_isHighScore = true;
 			PlayerPrefs.SetInt ("100WaveHighScore",m_TotalScoreAdd);
+			Debug.Log ("100モード更新");
 			break;
-		case "QuickMode":
-			m_BeforeHighScore = PlayerPrefs.GetInt ("QuickHighScore");
+		case 1:
+			m_pGameMode.text = "QuickMode";
 
+			m_BeforeHighScore = PlayerPrefs.GetInt ("QuickHighScore");
 			if (m_TotalScoreAdd <= m_BeforeHighScore)break;
 			m_isHighScore = true;
 			PlayerPrefs.SetInt ("QuickHighScore", m_TotalScoreAdd);
 			Debug.Log ("クイックモードハイスコア更新");
 			break;
-		case "LargeCrowdMode":
+		case 2:
+			m_pGameMode.text = "SmallMode";
+
 			m_BeforeHighScore = PlayerPrefs.GetInt("LargeHighScore");
 			if (m_TotalScoreAdd <= m_BeforeHighScore)break;
 			m_isHighScore = true;
 			PlayerPrefs.SetInt ("LargeHighScore",m_TotalScoreAdd);
+			Debug.Log ("スモールモードハイスコア更新");
 			break;
 		}
 		m_Order = (int)Order.GAME_MODE;
 
 		Debug.Log ("highscore:" + m_BeforeHighScore);
+
+		SoundManager.GetInstance.PlayBGM ((int)BGMType.RESULT);
 	}
 
 
@@ -161,12 +170,10 @@ public class Result : MonoBehaviour {
 
 
 		//テキスト更新
-		m_pGameMode.text = PlayerPrefs.GetString("GameMode");
 		m_pMyScore.text = "Score:" + m_MyScore;
 		m_pMaxCombo.text = "MaxCombo:" + m_MaxCombo;
 		m_pClearBonus.text = "ClearBonus:  ×" + m_ClearBunus;
 		m_pTotalScore.text = "TotalScore:" + m_TotalScore;
-		m_pGetMoney.text = "GetMoney:" + m_GetMoney;
 
 
 
@@ -282,7 +289,7 @@ public class Result : MonoBehaviour {
 		//SEを鳴らす
 		SoundManager.GetInstance.PlaySE((int)SEType.DECISION,1.0f,1.0f);
 
-		Application.LoadLevel ("ModeSelect");
+		Application.LoadLevel ("StageSelect");
 
 	}
 
