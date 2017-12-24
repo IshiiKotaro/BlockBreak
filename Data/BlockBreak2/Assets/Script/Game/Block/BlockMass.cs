@@ -187,6 +187,8 @@ public class BlockMass : MonoBehaviour
 		if (Random.Range(0, 200) >= createPer) return;
 		blockCS.Init(1);
 		int assistIconId = Random.Range(0,(int)AssistType.HYPER_LASER_T - 1);
+		//if (assistIconId == (int)AssistType.THUNDER)return;
+		Debug.Log("AssistId:" + assistIconId);
 		blockCS.SetIsAssistIcon (true);
 		blockCS.SetAssistId (assistIconId);
 		AssistIconManager.GetInstance.Create(assistIconId,block.transform.position,block);
@@ -223,8 +225,12 @@ public class BlockMass : MonoBehaviour
 		//==================================
 		//アシストアイコン設定
 		//==================================
+		if(ScoreManager.GetInstance.GetWave() <= 7)return;
+		if (_AssistId == (int)AssistType.THUNDER)return;
+
 		blockCS.SetIsAssistIcon (true);
 		blockCS.SetAssistId (_AssistId);
+		Debug.Log("AssistId Create:" + _AssistId);
 		AssistIconManager.GetInstance.Create(_AssistId,block.transform.position,block);
 
 		//作成フラグを建てる

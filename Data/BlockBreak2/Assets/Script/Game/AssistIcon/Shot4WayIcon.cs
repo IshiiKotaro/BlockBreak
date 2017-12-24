@@ -4,13 +4,5 @@ using UnityEngine;
 
 public class Shot4WayIcon : AssistIconBase {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

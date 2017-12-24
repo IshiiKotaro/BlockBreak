@@ -60,12 +60,16 @@ public class Warning : MonoBehaviour {
 			}
 		}
 
-	
-		if (maxIndex >= (int)BlockMassIndex.WARNING) 
+		int scal = 1;
+		if (PlayerPrefs.GetInt ("GameMode") == 2) 
+		{
+			scal = 2;
+		}
+		if (maxIndex >= (int)BlockMassIndex.WARNING * scal) 
 		{
 			m_isWarning = true;
 			m_Interval = cWarningInterval;
-			if (maxIndex >= (int)BlockMassIndex.DANGER) 
+			if (maxIndex >= (int)BlockMassIndex.DANGER * scal) 
 			{
 				m_Interval = cDangerInterval;
 			}

@@ -70,7 +70,7 @@ public class ScoreManager  : SingletonMonoBehaviour<ScoreManager>{
 
 		Destroy (m_ChainImage);
 		m_ChainImage = (GameObject)Instantiate(m_pChainImage,transform.position,Quaternion.identity);
-		m_ChainImage.transform.position = new Vector3 (this.transform.position.x + 1.0f,this.transform.position.y,this.transform.position.z);
+		m_ChainImage.transform.position = new Vector3 (this.transform.position.x + 1.2f,this.transform.position.y,this.transform.position.z);
 		m_ChainImage.transform.localScale = new Vector3(0.5f,0.5f,1.0f);
 
 	}

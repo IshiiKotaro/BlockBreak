@@ -23,16 +23,5 @@ public class AssistIconBase : MonoBehaviour {
 		m_AssistIconId = _Id; 
 		m_OwnerBlock = _Owner;
 	}
-
-
-	public virtual void Init()
-	{
-
-	}
-
-
-	public virtual void Update()
-	{
-
-	}
+		
 }
